@@ -19,3 +19,7 @@ task :config do
   puts "\tmodhash: #{@s.modhash}"
   puts "\tcookies: #{@s.cookies.split(/(reddit_session=.*?);/)[1]}"
 end
+
+task :run do
+  ruby "Snoobot.rb"
+end
