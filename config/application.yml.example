@@ -1,0 +1,7 @@
+# config/application.yml
+defaults: &defaults
+  reddit:
+    username: username
+    password: password
+  neat_setting: 24
+  first_admin: snoonet/sysop/nekosune

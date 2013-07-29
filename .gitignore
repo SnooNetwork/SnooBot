@@ -34,3 +34,7 @@ tmp
 _yardoc
 
 doc/
+
+
+# Project specific ignores
+config/application.yml
