@@ -5,7 +5,8 @@ class Hello
   include Cinch::Plugin 
   match "hello"
   match "addtest", method: :addtest
-  match "addperm", method: :addPerm
+  match "perm1", method: :addPerm
+  match "perm2", method: :addPerm2
   def execute(m)
     m.user.refresh
     m.reply "Hello, #{m.user.authname}"
@@ -17,9 +18,11 @@ class Hello
   end
   
   def addPerm(m)
-    perm=Permission.find_by_name("test.*")
-    user=User.find_by_account("nekosune")
-    user.permissions << perm
-    user.save!
+    m.reply "Checking for test.this.that"
+    m.reply Permission.has?("nekosune","test.this.that")
+  end
+  def addPerm2(m)
+    m.reply "Checking for fail.this.that"
+    m.reply Permission.has?("nekosune","fail.this.that")
   end
 end
