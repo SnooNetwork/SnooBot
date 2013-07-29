@@ -39,3 +39,4 @@ doc/
 # Project specific ignores
 config/application.yml
 Gemfile.lock
+snoobot.db

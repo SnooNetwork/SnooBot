@@ -1,6 +1,7 @@
 require 'snoo'
 require 'highline/import'
-
+require 'rubygems'
+require 'active_record'
 task :default => [:config]
 
 task :config do
@@ -22,4 +23,10 @@ end
 
 task :run do
   ruby "Snoobot.rb"
+end
+
+task :migrate, [:migration] do |t, args|
+  args.with_defaults(:migration => nil)
+  ActiveRecord::Base.establish_connection( :adapter => "sqlite3",:database => "snoobot.db")
+  ActiveRecord::Migrator.migrate "./migrations/", args.migration
 end
