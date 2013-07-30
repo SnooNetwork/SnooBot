@@ -3,11 +3,15 @@ class UserManagement
   include BasePlugin
   include Cinch::Plugin
   extend  MethodDecorators
-  match "addUser", method: :addUser
   
-  +MethodDecorators::PermissionCondition.new("users.add")
-  def addUser(m)
-    m.reply "I should fail!"
+  match /addUser (.+)/i, method: :addUser
+
+  +SnooDecorators::PermissionCondition.new("users.add")
+  def addUser(m,userToAdd)
+    m.reply "I add a User! #{userToAdd}"
   end
+  
+  
+
   
 end

@@ -30,3 +30,9 @@ task :migrate, [:migration] do |t, args|
   ActiveRecord::Base.establish_connection( :adapter => "sqlite3",:database => "snoobot.db")
   ActiveRecord::Migrator.migrate "./migrations/", args.migration
 end
+
+task :seed do
+  ActiveRecord::Base.establish_connection( :adapter => "sqlite3",:database => "snoobot.db")
+  Dir[File.dirname(__FILE__)+'/models/*.rb'].each { |file| require file}
+  require_relative "db/seed.rb"
+end
