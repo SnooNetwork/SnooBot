@@ -14,5 +14,6 @@ class Permission < ActiveRecord::Base
     
     perms=user.permissions
     valid=perms.select{|perm| PatternMatcher.instance.isMatches(perm.name,permission) }
+    valid!=[]
   end
 end
