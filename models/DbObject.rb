@@ -8,4 +8,8 @@ class DbObject < ActiveRecord::Base
   def IsGroup?
     return self.group==true
   end
+  
+  def self.find_group(groupname)
+    return self.where("lower(name)=? AND db_objects.'group'=?",groupname,true)
+  end
 end
